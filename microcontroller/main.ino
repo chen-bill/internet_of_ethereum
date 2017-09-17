@@ -8,7 +8,7 @@ void setup()
 
   Particle.function("lock",ledToggle);
   
-  analogWrite(lock, 0);
+  analogWrite(lock, 150);
   digitalWrite(led, LOW);
 }
 
@@ -18,12 +18,12 @@ void loop()
 
 int ledToggle(String command) {
   if (command=="true") {
-    analogWrite(lock,254);
+    analogWrite(lock,210);
     digitalWrite(led, HIGH);
     return 1;
   }
   else if (command=="false") {
-    analogWrite(lock,1);
+    analogWrite(lock,140);
     digitalWrite(led, LOW);
     return 0;
   }
@@ -31,4 +31,3 @@ int ledToggle(String command) {
     return -1;
   }
 }
-

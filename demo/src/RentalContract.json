@@ -1,0 +1,92 @@
+{
+  "contract_name": "Rideshare",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "price",
+          "type": "uint256"
+        }
+      ],
+      "name": "updatePrice",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getLockStatus",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "leftover_wei",
+          "type": "uint256"
+        }
+      ],
+      "name": "lock",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "price",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "constructor"
+    },
+    {
+      "payable": true,
+      "type": "fallback"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "rentalMinutes",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "rider",
+          "type": "address"
+        }
+      ],
+      "name": "Unlock",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [],
+      "name": "Lock",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000f57600080fd5b6040516020806102ae833981016040528080519150505b60008054600160a060020a03191633600160a060020a031617905560028190556003805460ff191660011790555b505b610249806100656000396000f300606060405236156100545763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638d6cc56d811461011f5780639ae8ad4514610137578063dd4670641461015e575b61011d5b60025434111561011a576001805473ffffffffffffffffffffffffffffffffffffffff19163373ffffffffffffffffffffffffffffffffffffffff161790556002547f027d6c6704a7913d85498305191e7bb755d64034c42fb5169c726408f65b3ce290348115156100c657fe5b6001549190049073ffffffffffffffffffffffffffffffffffffffff1660405191825273ffffffffffffffffffffffffffffffffffffffff1660208201526040908101905180910390a16004805460010190555b5b565b005b341561012a57600080fd5b61011d600435610188565b005b341561014257600080fd5b61014a610191565b604051901515815260200160405180910390f35b341561016957600080fd5b61014a60043561019b565b604051901515815260200160405180910390f35b60028190555b50565b60035460ff165b90565b60015460009073ffffffffffffffffffffffffffffffffffffffff1682156108fc0283604051600060405180830381858888f1935050505015156101de57600080fd5b6003805460ff191660011790557f46620e39f4e119bf05f13544f8ef38338fc06c17f6b731c7f95bee356572db9660405160405180910390a15b9190505600a165627a7a72305820c18ea4f07116b8e3acb2bd4c4e9f94fe8a2d364993b66ec8747aa1043d2372ba0029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1505610932398
+}
+
+
