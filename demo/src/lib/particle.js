@@ -3,7 +3,8 @@ import loginObj from './login.json'
 var Particle = require('particle-api-js');
 var particle = new Particle();
 var token;
-var timer;
+
+var web3Helpers = require('./web3.js')
 
 particle.login(
   {
@@ -35,7 +36,7 @@ export function lock(){
 
 };
 
-export function unlock(seconds){
+export function unlock(){
   var fnPr = particle.callFunction({ 
     deviceId: '280025001847353236343033', 
     name: 'lock', 
@@ -49,6 +50,4 @@ export function unlock(seconds){
     }, function(err) {
       console.log('An error occurred:', err);
     });
-
-  timer = setTimeout(lock, seconds * 1000);
 };

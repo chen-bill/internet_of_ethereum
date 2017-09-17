@@ -7,7 +7,6 @@ let web3 = new Web3();
 web3.setProvider(new Web3.providers.HttpProvider("http://localhost:8545"));
 
 export function getBalance(address){
-  console.log(address);
   let promise = new Promise((res, rej) => {
     web3.eth.getBalance(address)
       .then((balance) => {
@@ -32,14 +31,40 @@ export function sendEther(from, to, amount){
           gasLimit: 712388,
           gasPrice: 20000000000,
         }
-        console.log("sending transaction");
         web3.eth.sendTransaction(transactionSettings).then((data) => {
-          console.log(data);
           res(data)
         })
       })
       .catch((error) => {
-        console.log("unlock account error");
+        console.log("unlock account error", error);
+        rej(error)
+      })
+  })
+  return promise
+}
+
+export function lock(primaryAddr, contractAddr){
+  let promise = new Promise((res, rej) => {
+    web3.eth.personal.unlockAccount(primaryAddr, "passphrase")
+      .then(() => {
+        console.log('contractaddr', contractAddr);
+        let contract = new web3.eth.Contract(abi, contractAddr)
+
+        contract.methods.lock()
+          .call({
+            from: primaryAddr, 
+            gas: 2000000})
+          .then((status) => {
+            console.log("lock success");
+            res(status)
+          })
+          .catch((error) => {
+            console.log("lock error", error);
+            rej(error)
+          })
+      })
+      .catch((error) => {
+        console.log("unlock account error", error);
         rej(error)
       })
   })
@@ -59,7 +84,7 @@ export function getCost(primaryAddr, contractAddr){
           })
       })
       .catch((error) => {
-        console.log("unlock account error");
+        console.log("unlock account error", error);
         rej(error)
       })
   })
@@ -70,7 +95,9 @@ export function getAmountPaid(primaryAddr, contractAddr){
   let promise = new Promise((res, rej) => {
     web3.eth.personal.unlockAccount(primaryAddr, "passphrase")
       .then(() => {
+        console.log(contractAddr);
         let contract = new web3.eth.Contract(abi, contractAddr)
+        console.log(contract.methods);
 
         contract.methods.getAmountPaid()
           .call({from: primaryAddr})
@@ -79,7 +106,7 @@ export function getAmountPaid(primaryAddr, contractAddr){
           })
       })
       .catch((error) => {
-        console.log("unlock account error");
+        console.log("unlock account error", error);
         rej(error)
       })
   })
@@ -99,7 +126,7 @@ export function checkLock(primaryAddr, contractAddr){
           })
       })
       .catch((error) => {
-        console.log("unlock account error");
+        console.log("unlock account error", error);
         rej(error)
       })
   })

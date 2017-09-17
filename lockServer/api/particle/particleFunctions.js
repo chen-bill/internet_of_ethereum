@@ -4,7 +4,7 @@ var Particle = require('particle-api-js');
 var particle = new Particle();
 var token;
 
-let source = fs.readFileSync("./api/particle/login.json");
+let source = fs.readFileSync("./login.json");
 let loginObj = JSON.parse(source);
 
 particle.login(
@@ -31,7 +31,7 @@ particle.login(
     }
   );
 
-exports.lock = function(req, res) {
+exports.lock = function() {
   var fnPr = particle.callFunction({ 
     deviceId: '280025001847353236343033', 
     name: 'lock', 
@@ -42,13 +42,12 @@ exports.lock = function(req, res) {
   fnPr.then(
     function(data) {
       console.log('locked');
-      //console.log('Function called succesfully:', data);
     }, function(err) {
       console.log('An error occurred:', err);
     });
 };
 
-exports.unlock = function(req, res) {
+exports.unlock = function() {
   var fnPr = particle.callFunction({ 
     deviceId: '280025001847353236343033', 
     name: 'lock', 
@@ -59,8 +58,11 @@ exports.unlock = function(req, res) {
   fnPr.then(
     function(data) {
       console.log('unlocked');
-      //console.log('Function called succesfully:', data);
     }, function(err) {
       console.log('An error occurred:', err);
     });
 };
+
+exports.test = function(){
+  console.log("particleFunctions working");
+}

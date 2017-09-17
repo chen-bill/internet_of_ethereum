@@ -1,24 +1,73 @@
-.App {
-  text-align: center;
+.App{
+  font-size: 25px;
+  font-family: monospace;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.sendContainer{
+  width: 100%;
+  height: 30vh;
+  background-color: #102026;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.sendContainer label {
+  color:white;
 }
 
-.App-intro {
-  font-size: large;
+.rightArrow {
+  color: #00BCD4;
+  font-size: 20px;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.sendContainer input{
+  width: 200px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  font-size: 20px;
+  color: #00BCD4;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+.accounts {
+  margin: 30px;
+}
+
+.accounts h2{
+  color: #00BCD4;
+}
+
+.accounts .balance {
+  color: #00BCD4;
+}
+
+.bicycles {
+  margin: 30px;
+}
+
+.bicycles .bicycle{
+  font-size: 80px;
+  display: inline;
+  color: #00BCD4;
+}
+
+.refreshButton{
+  font-size: 40px;
+  color: #00BCD4;
+  width: 100%;
+  cursor: pointer
+}
+
+ul {
+  list-style: none;
+  padding: 0;
 }

@@ -2,16 +2,14 @@ pragma solidity ^0.4.10;
 
 contract Rideshare {
   address owner;
-  uint wei_per_second;
+  uint public wei_per_second;
   
-  address currentRider;
-  uint amountPaid;
+  address public currentRider;
+  uint public amountPaid;
+  bool public locked;
   
-  bool locked;
-  
-  uint numrides;
+  uint public numrides;
 
-	//event Transfer(address indexed _from, address indexed _to, uint256 _value);
   event Unlock(uint rentalMinutes, address rider);
   event Lock();
 
@@ -32,6 +30,7 @@ contract Rideshare {
         numrides = numrides + 1;
         locked = false;
         Unlock(msg.value/wei_per_second, currentRider);
+        owner.transfer(msg.value);
     }
   }
   
@@ -39,11 +38,19 @@ contract Rideshare {
     return locked;
   }
   
-  function lock(uint leftover_wei) returns (bool) {
-    currentRider.transfer(leftover_wei);
+  function getAmountPaid() constant returns (uint){
+    return amountPaid;
+  }
+  
+  function getCost() constant returns (uint){
+    return wei_per_second;
+  }
+  
+  function lock() returns (bool) {
     locked = true;
     amountPaid = 0;
     Lock();
+    return locked;
   }
 }
 

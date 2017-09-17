@@ -1,18 +1,16 @@
 'use strict';
 module.exports = function(app) {
-  var games = require('../controllers/rentalController');
+  var rental = require('../controllers/rentalController');
   //var contract = require('../web3/contractFunctions');
 
+  //routes used for debugging
   app.route('/')
-    .get(games.handleHome);
+    .get(rental.handleHome);
 
   app.route('/lock')
-    .get(games.lock);
+    .get(rental.lock);
 
   app.route('/unlock')
-    .get(games.unlock)
-
-  //app.route('/transfer')
-    //.get(contract.transfer)
+    .get(rental.unlock)
 };
 

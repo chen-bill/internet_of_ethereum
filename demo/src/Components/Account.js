@@ -10,8 +10,12 @@ class Account extends Component {
   render() {
     return (
       <li className="Account">
+      <span className = "address">
         {this.props.data.address} : 
+      </span>
+      <span className = "balance">
         {this.props.data.balance}
+      </span>
       </li>
     );
   }
