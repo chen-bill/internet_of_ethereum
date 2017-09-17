@@ -120,27 +120,30 @@ class App extends Component {
     this.setState(tmp)
   }
 
-  handleSecondsChange(e) {
-    web3Helpers.lock(primaryAddr, contractAddr)
-      .then((res) => {
-        console.log("ether", res);
-      }).catch((error) => {
-        console.log("error", error);
-      })
-    //var tmp = this.state;
-    //tmp.seconds = e.target.value;
-    //tmp.ether = tmp.seconds*0.00001;
-    //this.setState(tmp)
-  }
+  //handleSecondsChange(e) {
+    //web3Helpers.lock(primaryAddr, contractAddr)
+      //.then((res) => {
+        //console.log("ether", res);
+      //}).catch((error) => {
+        //console.log("error", error);
+      //})
+    ////var tmp = this.state;
+    ////tmp.seconds = e.target.value;
+    ////tmp.ether = tmp.seconds*0.00001;
+    ////this.setState(tmp)
+  //}
 
-  handleEtherChange(e) {
-    var tmp = this.state;
-    tmp.ether = e.target.value;
-    tmp.seconds = tmp.ether/0.00001;
-    this.setState(tmp)
-  }
+  //handleEtherChange(e) {
+    //var tmp = this.state;
+    //tmp.ether = e.target.value;
+    //tmp.seconds = tmp.ether/0.00001;
+    //this.setState(tmp)
+  //}
 
   submitTransaction(postId, e) {
+    var tmp = this.state;
+    tmp.lastTransaction = "pending..."
+    this.setState(tmp)
     web3Helpers.sendEther(this.state.fromAddress, this.state.toAddress, this.state.amount)
       .then((transaction) => {
         var tmp = this.state;
@@ -167,15 +170,15 @@ class App extends Component {
             <label>from</label>
             <input
             type="text"
-            value={this.state.toAddress}
-            onChange={this.handleToChange.bind(this)}
+            value={this.state.fromAddress}
+            onChange={this.handleFromChange.bind(this)}
             />
       
             <label>to</label>
             <input
             type="text"
-            value={this.state.fromAddress}
-            onChange={this.handleFromChange.bind(this)}
+            value={this.state.toAddress}
+            onChange={this.handleToChange.bind(this)}
             />
             <ArrowRight
             className="rightArrow"
@@ -198,11 +201,14 @@ class App extends Component {
           </ul>
           </div>
         </div>
+        <div className="accounts">
+          <h2>
+            Last transaction:
+          </h2>
+          {this.state.lastTransaction}
+        </div>
         <Refresh className="refreshButton"
       onClick={ this.update.bind(this)}/>
-        <div>
-        </div>
-        {this.state.lastTransaction}
       </div>
     );
   }

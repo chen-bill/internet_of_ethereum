@@ -1,7 +1,7 @@
 pragma solidity ^0.4.10;
 
 contract Rideshare {
-  address owner;
+  address public owner;
   uint public wei_per_second;
   
   address public currentRider;
@@ -53,4 +53,5 @@ contract Rideshare {
     return locked;
   }
 }
+
 
